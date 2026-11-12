@@ -10,7 +10,7 @@ const CONFIG = {
     src: `images/${index + 1}.jpg`,
     caption: [
       "Se ambos gostamos de salgados, de RIr e de SOL... pareceu-me um bom ponto de partida",
-      "Queres vir ordenhar comigo? (não sei se me conheces bem ou se eu é que ia estragando isto hahaha",
+      "Queres vir ordenhar comigo? (não sei se me conheces bem ou se eu é que ia estragando isto) :P",
       "Uma amizade cheia de boas memórias.",
       "Que venham mais aventuras no próximo ano.",
     ][index % 4],
@@ -28,7 +28,6 @@ const gallery = document.querySelector("#gallery");
 const photoImage = document.querySelector("#photo-image");
 const photoBackdrop = document.querySelector("#photo-backdrop");
 const photoCaption = document.querySelector("#photo-caption");
-const photoCount = document.querySelector("#photo-count");
 const toast = document.querySelector("#toast");
 
 let selectedTrack = -1;
@@ -134,7 +133,6 @@ function showPhoto(index) {
   photoImage.classList.remove("is-visible");
   photoImage.alt = selectedPhoto.caption;
   photoCaption.textContent = selectedPhoto.caption;
-  photoCount.textContent = `${String(currentPhoto + 1).padStart(2, "0")} / ${String(CONFIG.photos.length).padStart(2, "0")}`;
 
   photoImage.onload = () => {
     photoBackdrop.style.backgroundImage = `url("${photoImage.src}")`;
