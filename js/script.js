@@ -11,8 +11,8 @@ const CONFIG = {
     caption: [
       "Se ambos gostamos de salgados, de RIr e de SOL... pareceu-me um bom ponto de partida",
       "Queres vir ordenhar comigo? (não sei se me conheces bem ou se eu é que ia estragando isto) :P",
-      "Uma amizade cheia de boas memórias.",
-      "Que venham mais aventuras no próximo ano.",
+      "Mereces as melhores vacas do mundo!",
+      "Sei que já foste duas vezes aos Açores, mas não queres ir uma á Terceira?",
     ][index % 4],
   })),
   googleFormUrl: "GOOGLE_FORM_URL",
