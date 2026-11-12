@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f1ed">
+    <meta
+      name="description"
+      content="Uma pequena surpresa de Natal"
+    >
+    <title>Uma surpresa de Natal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="experience" id="experience">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Uma surpresa de Natal, início">
+          <span class="brand-mark" aria-hidden="true">✳</span>
+          <span class="brand-copy">
+            <span class="brand-name">um Natal mais especial</span>
+            <span class="brand-caption">para alguém ainda mais especial</span>
+          </span>
+        </a>
+
+        <section class="music-player" aria-label="Selecionar e ouvir música">
+          <div class="playlist" id="playlist" role="group" aria-label="Escolhe uma música"></div>
+          <div class="player-controls">
+            <button class="audio-button play-button" id="play-button" type="button" disabled>
+              <span aria-hidden="true">▶</span>
+              <span>Play</span>
+            </button>
+            <button class="audio-button pause-button" id="pause-button" type="button" disabled>
+              <span aria-hidden="true">Ⅱ</span>
+              <span>Pause</span>
+            </button>
+          </div>
+          <p class="music-status" id="music-status" aria-live="polite">
+            escolhe uma música!
+          </p>
+        </section>
+      </header>
+
+      <main class="stage" id="stage">
+        <section class="welcome" id="welcome" aria-labelledby="welcome-title">
+          <span class="eyebrow"><span class="eyebrow-line"></span> UM MIMO DE NATAL <span class="eyebrow-line"></span></span>
+          <h1 id="welcome-title">Uma pequena<br>Prenda de <em>Natal</em> para ti.</h1>
+          <p>Escolhe a música e prepara-te para sorrir.</p>
+          <span class="welcome-heart" aria-hidden="true">✳</span>
+        </section>
+
+        <section class="gallery" id="gallery" aria-label="Carrossel de fotografias" hidden>
+          <div class="photo-scene">
+            <div class="photo-backdrop" id="photo-backdrop" aria-hidden="true"></div>
+            <img class="photo-image" id="photo-image" alt="" draggable="false">
+            <div class="photo-shade" aria-hidden="true"></div>
+            <div class="photo-copy">
+              <span class="photo-kicker">MOMENTOS PARA RECORDAR</span>
+              <p class="photo-caption" id="photo-caption"></p>
+            </div>
+            <span class="photo-count" id="photo-count" aria-live="polite"></span>
+            <button class="gallery-arrow gallery-arrow--previous" id="previous-button" type="button" aria-label="Fotografia anterior">
+              <span aria-hidden="true">←</span>
+            </button>
+            <button class="gallery-arrow gallery-arrow--next" id="next-button" type="button" aria-label="Fotografia seguinte">
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+          <div class="gallery-hint" aria-hidden="true"><span>←</span> usa as setas ou desliza <span>→</span></div>
+        </section>
+      </main>
+
+      <footer class="bottombar">
+        <button class="accept-button" id="accept-button" type="button">
+          Quero! <span aria-hidden="true">↗</span>
+        </button>
+        <span class="footer-note footer-note--right">que não faltem bons momentos no novo ano!</span>
+      </footer>
+
+      <audio id="audio-player" preload="none" loop></audio>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+</html>
