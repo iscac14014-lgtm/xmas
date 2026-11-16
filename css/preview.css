@@ -1,0 +1,120 @@
+:root {
+  color-scheme: light;
+  --paper: #f6f1ed;
+  --ink: #3d3031;
+  --rose: #a45b62;
+  --rose-dark: #85464e;
+  font-family: "DM Sans", "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.preview-page {
+  width: min(100%, 1120px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 18px clamp(14px, 4vw, 48px) 28px;
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.preview-link {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 15px;
+  border: 1px solid rgba(91, 64, 62, 0.18);
+  border-radius: 3px;
+  color: var(--ink);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.preview-link--download {
+  border-color: var(--rose);
+  background: var(--rose);
+  color: #fff;
+}
+
+.preview-link--download:hover {
+  border-color: var(--rose-dark);
+  background: var(--rose-dark);
+}
+
+.preview-main h1 {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(24px, 4vw, 34px);
+  font-weight: 400;
+}
+
+.preview-main p {
+  margin: 7px 0 15px;
+  color: #806f6c;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.document-frame {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 170px);
+  min-height: 480px;
+  border: 1px solid rgba(91, 64, 62, 0.16);
+  background: #fff;
+  box-shadow: 0 8px 26px rgba(43, 29, 30, 0.1);
+}
+
+.preview-link:focus-visible {
+  outline: 2px solid var(--rose-dark);
+  outline-offset: 3px;
+}
+
+@media (max-width: 520px) {
+  .preview-page {
+    padding: 12px 10px 18px;
+  }
+
+  .preview-header {
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .preview-link {
+    min-height: 40px;
+    gap: 6px;
+    padding: 0 10px;
+    font-size: 11px;
+  }
+
+  .preview-main p {
+    font-size: 12px;
+  }
+
+  .document-frame {
+    height: calc(100dvh - 165px);
+    min-height: 60vh;
+  }
+}

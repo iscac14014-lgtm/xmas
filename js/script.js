@@ -6,16 +6,25 @@ const CONFIG = {
     
   ],
   // Browsers cannot list files in a static folder; increase this number as photos are added.
-  photos: Array.from({ length: 8 }, (_, index) => ({
+  photos: Array.from({ length: 14 }, (_, index) => ({
     src: `images/${index + 1}.jpg`,
     caption: [
       "Se ambos gostamos de salgados, de RIr e de SOL... pareceu-me um bom ponto de partida",
+      "Acho que me conheces bem... e talvez já esperes em parte o que vem aí... ",
       "Queres vir ordenhar comigo? (não sei se me conheces bem ou se eu é que ia estragando isto) :P",
-      "Mereces as melhores vacas do mundo!",
-      "Sei que já foste duas vezes aos Açores, mas não queres ir uma á Terceira?",
-    ][index % 4],
+      "Mas preciso de ajuda!",
+      "Tu mereces as melhores vacas do mundo!",
+      "Sei que já foste duas vezes aos Açores, mas queres voltar uma Terceira?",
+      "Preciso de planear esta aventura a dois, com a ajuda da melhor agencia de viagens do mundo!",
+      "Em resumo!",
+      "Rissóis",
+      "Voo para os Açores!",
+      "Ordenhar uma vaca!",
+      "EU!",
+      "Bons momentos!",
+      "Obrigado!"
+    ][index % 14],
   })),
-  googleFormUrl: "GOOGLE_FORM_URL",
 };
 
 const playlist = document.querySelector("#playlist");
@@ -28,6 +37,9 @@ const gallery = document.querySelector("#gallery");
 const photoImage = document.querySelector("#photo-image");
 const photoBackdrop = document.querySelector("#photo-backdrop");
 const photoCaption = document.querySelector("#photo-caption");
+const previousButton = document.querySelector("#previous-button");
+const nextButton = document.querySelector("#next-button");
+const acceptButton = document.querySelector("#accept-button");
 const toast = document.querySelector("#toast");
 
 let selectedTrack = -1;
@@ -40,6 +52,14 @@ function showToast(message) {
   toast.classList.add("is-visible");
   window.clearTimeout(toastTimeout);
   toastTimeout = window.setTimeout(() => toast.classList.remove("is-visible"), 4000);
+}
+
+function updatePhotoControls() {
+  const photoCount = CONFIG.photos.length;
+  const isLastPhoto = photoCount > 0 && currentPhoto === photoCount - 1;
+  previousButton.disabled = photoCount < 2 || currentPhoto === 0;
+  nextButton.disabled = photoCount < 2 || isLastPhoto;
+  acceptButton.disabled = !isLastPhoto;
 }
 
 function renderPlaylist() {
@@ -128,7 +148,8 @@ function photoFallback(index) {
 
 function showPhoto(index) {
   if (CONFIG.photos.length === 0) return;
-  currentPhoto = (index + CONFIG.photos.length) % CONFIG.photos.length;
+  currentPhoto = Math.max(0, Math.min(index, CONFIG.photos.length - 1));
+  updatePhotoControls();
   const selectedPhoto = CONFIG.photos[currentPhoto];
   photoImage.classList.remove("is-visible");
   photoImage.alt = selectedPhoto.caption;
@@ -147,11 +168,13 @@ function showPhoto(index) {
 
 function changePhoto(direction) {
   if (CONFIG.photos.length < 2) return;
-  showPhoto(currentPhoto + direction);
+  const nextIndex = currentPhoto + direction;
+  if (nextIndex < 0 || nextIndex >= CONFIG.photos.length) return;
+  showPhoto(nextIndex);
 }
 
-document.querySelector("#previous-button").addEventListener("click", () => changePhoto(-1));
-document.querySelector("#next-button").addEventListener("click", () => changePhoto(1));
+previousButton.addEventListener("click", () => changePhoto(-1));
+nextButton.addEventListener("click", () => changePhoto(1));
 playButton.addEventListener("click", playTrack);
 pauseButton.addEventListener("click", pauseTrack);
 
@@ -161,25 +184,8 @@ player.addEventListener("pause", () => {
   musicStatus.textContent = `em pausa · ${CONFIG.tracks[selectedTrack].name}`;
 });
 
-document.querySelector("#accept-button").addEventListener("click", () => {
-  if (CONFIG.googleFormUrl === "GOOGLE_FORM_URL") {
-    showToast("Adiciona o link real do formulário em CONFIG.googleFormUrl no js/script.js.");
-    return;
-  }
-
-  let formUrl;
-  try {
-    formUrl = new URL(CONFIG.googleFormUrl, window.location.href);
-  } catch (error) {
-    showToast("O endereço do formulário não é válido.");
-    console.error("Invalid Google Forms URL:", error);
-    return;
-  }
-  if (formUrl.protocol !== "https:" && formUrl.protocol !== "http:") {
-    showToast("O link do formulário deve começar por https:// ou http://.");
-    return;
-  }
-  window.open(formUrl.href, "_blank", "noopener,noreferrer");
+acceptButton.addEventListener("click", () => {
+  window.location.href = "preview.html";
 });
 
 document.querySelector("#gallery").addEventListener("touchstart", (event) => {
@@ -207,4 +213,5 @@ document.querySelector(".brand").addEventListener("click", (event) => {
   welcome.hidden = false;
 });
 
+updatePhotoControls();
 renderPlaylist();

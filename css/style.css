@@ -358,12 +358,17 @@ button {
   transition: background 180ms ease, transform 180ms ease;
 }
 
-.gallery-arrow:hover {
+.gallery-arrow:hover:not(:disabled) {
   background: rgba(37, 29, 29, 0.42);
 }
 
-.gallery-arrow:active {
+.gallery-arrow:active:not(:disabled) {
   transform: translateY(-50%) scale(0.92);
+}
+
+.gallery-arrow:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
 }
 
 .gallery-arrow--previous {
@@ -442,14 +447,21 @@ button {
   transition: background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
-.accept-button:hover {
+.accept-button:hover:not(:disabled) {
   background: var(--rose-dark);
   box-shadow: 0 9px 24px rgba(132, 70, 78, 0.24);
   transform: translateY(-2px);
 }
 
-.accept-button:active {
+.accept-button:active:not(:disabled) {
   transform: translateY(0) scale(0.97);
+}
+
+.accept-button:disabled {
+  background: #b7aaa6;
+  box-shadow: none;
+  color: #f8f5f3;
+  cursor: not-allowed;
 }
 
 .accept-button span {
